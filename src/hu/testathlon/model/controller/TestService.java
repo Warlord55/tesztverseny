@@ -3,6 +3,7 @@ package hu.testathlon.model.controller;
 import hu.testathlon.model.domain.TestResult;
 import hu.testathlon.model.domain.TestValidator;
 
+import javax.xml.transform.Result;
 import java.util.List;
 
 public class TestService {
@@ -17,5 +18,20 @@ public class TestService {
 
     public int getCompetitorNumber() {
         return testResults.size();
+    }
+
+   public String getAnswersById(String id) {
+        return getTestResultById(id).getResult();
+   }
+
+    public String getCorrectAnswer() {
+        return testValidator.getAnswer();
+    }
+
+   private TestResult getTestResultById(String id) {
+        return testResults.stream()
+                .filter(testResult -> testResult.getId().equals(id))
+                .findAny()
+                .get();
     }
 }
