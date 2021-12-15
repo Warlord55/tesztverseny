@@ -28,12 +28,19 @@ public class App {
     private void run() {
         System.out.println("1. feladat: Az adatok beolvasása ");
         System.out.println("2. feladat: ");
-        System.out.println("A vetélkedőn: " + testService.getCompetitorNumber() + " Versenyző indult: ");
+        int competitorNumber = testService.getCompetitorNumber();
+        System.out.println("A vetélkedőn: " + competitorNumber + " Versenyző indult ");
         System.out.print("3. feladat: A versenyző azonositója = ");
         String id = console.read();
         System.out.println(testService.getAnswersById(id) + "\t(A versenyző válasza)");
         System.out.println("4. feladat");
         System.out.println(testService.getCorrectAnswer() + "\t(a helyes megoldás)");
-    }
+        System.out.println(testService.getCheckResultById(id) + "\t(a versenyző helyes válaszai)");
+        System.out.print("5. feladat: A feladat sorszáma = ");
+        int taskId = console.readInt() - 1;
+        long countAnswersByTasks = testService.countAnswersByTasks(taskId);
+        System.out.printf("A feladatra %d fő, a versenyzők %5.2f%%-a adott helyes választ.",
+                countAnswersByTasks, countAnswersByTasks * 100.0 / competitorNumber);
 
+    }
 }

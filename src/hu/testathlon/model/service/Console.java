@@ -13,5 +13,7 @@ public class Console {
     public String read() {
         return scanner.next();
     }
-
+    public int readInt() {
+        return scanner.nextInt();
+    }
 }

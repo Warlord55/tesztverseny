@@ -28,6 +28,16 @@ public class TestService {
         return testValidator.getAnswer();
     }
 
+    public String getCheckResultById(String id) {
+        return testValidator.checkResult(getAnswersById(id));
+    }
+
+    public long countAnswersByTasks(int taskId) {
+        return testResults.stream()
+                .filter(i -> testValidator.isCorrect(i.getResult(), taskId))
+                .count();
+    }
+
    private TestResult getTestResultById(String id) {
         return testResults.stream()
                 .filter(testResult -> testResult.getId().equals(id))
